@@ -44,6 +44,7 @@ app.get('*', function (req, res) {
   } else {   // If it's neither a 'natural' nor a unix date format
     // Ouput an error message
     console.error('Wrong date format');
+    dateObj = null;
   }
   // res.end can't output an object so we need to stringify it
   res.end(JSON.stringify(dateObj));
