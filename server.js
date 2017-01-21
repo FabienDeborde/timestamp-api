@@ -10,6 +10,10 @@ app.get('*', function (req, res) {
     'unix': 0,
     'natural': ''
   };
+  // Declare date components var
+    var year = 0;
+    var month = "";
+    var day = 0;
   // RegEx to search for 'natural' format, naturalResult will output an object if it's a match, if not it returns null
   var naturalRegEx = /^([a-zA-Z]*)%20(\d{2}),%20(\d{4})$/;
   var naturalResult = date.match(naturalRegEx);
@@ -19,19 +23,21 @@ app.get('*', function (req, res) {
 
   if (naturalResult) {  // Check if it's a 'natural' date format
     // Get the date info
-    var year = naturalResult[3];
-    var month = naturalResult[1];
-    var day = naturalResult[2];
+    year = naturalResult[3];
+    month = naturalResult[1];
+    day = naturalResult[2];
     // Format the date and insert the values inside the dateObj object
+    var monthISO = (months.indexOf(month)+1);
+    var dateISO8601 = year + '-' + monthISO + '-' + day;
     dateObj.natural = month + ' ' + day + ', ' + year;
-    dateObj.unix = Date.parse(year, month, day);
+    dateObj.unix = (Date.parse(dateISO8601)/1000);
   } else if (unixResult) {  // Check if it's a unix date format
     // Get the date info
     var d = parseInt(date, 10); // Change the date from String to Number
     var unixDate = new Date(d *1000); // Create new date from the unix timestamp (took me a while to understand this timestamp was not in milliseconds)
-    var year = unixDate.getFullYear();
-    var month = months[unixDate.getMonth()];
-    var day = unixDate.getDate();
+    year = unixDate.getFullYear();
+    month = months[unixDate.getMonth()];
+    day = unixDate.getDate();
     // Format the date and insert the values inside the dateObj object
     dateObj.unix = d;
     dateObj.natural = month + ' ' + day + ', ' + year;
