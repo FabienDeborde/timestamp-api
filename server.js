@@ -50,8 +50,8 @@ app.get('*', function (req, res) {
   res.end(JSON.stringify(dateObj));
 });
 
+app.set('port', (process.env.PORT || 8080))
 
-
-app.listen(process.env.PORT, function () {
-  console.log('Timestamp app listening on port ' + process.env.PORT + '!');
+app.listen(app.get('port'), function () {
+  console.log('Timestamp app listening on port ' + app.get('port') + '!');
 });
