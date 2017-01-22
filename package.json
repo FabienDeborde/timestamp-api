@@ -4,8 +4,8 @@
   "description": "FreeCodeCamp Timestamp Microservice API challenge",
   "main": "server.js",
   "scripts": {
+    "heroku-prebuild": "npm install --dev",
     "start": "node server.js",
-    "postinstall": "npm install --dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Fabien Deborde",
