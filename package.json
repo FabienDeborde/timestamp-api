@@ -1,8 +1,8 @@
 {
-  "name": "timestamp-microservice",
+  "name": "ffc-timestamp-api",
   "version": "1.0.0",
   "description": "FreeCodeCamp Timestamp Microservice API challenge",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
